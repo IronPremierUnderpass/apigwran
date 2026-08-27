@@ -1,4 +1,4 @@
-name: Update README
+name: Update LOG
 
 on:
   schedule:
@@ -12,15 +12,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Update README
+      - name: Update LOG
         run: |
-          echo "# Last update: $(date)" > README.md
-          echo "Current time: $(date)" >> README.md
+          echo "Last update: $(date)" > log.txt
+          echo "Current time: $(date)" >> log.txt
 
       - name: Commit changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
-          git commit -m "Auto-update README $(date)" || echo "No changes"
+          git add log.txt
+          git commit -m "Auto-update log $(date)" || echo "No changes"
           git push
